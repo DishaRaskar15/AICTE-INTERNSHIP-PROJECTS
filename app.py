@@ -18,7 +18,7 @@ else:
     st.warning("⚠️ Model file not found. Using default model for testing.")
     from sklearn.linear_model import LinearRegression
     model = LinearRegression()
-    X_dummy = np.array([[1, 1, 25, 1], [2, 2, 30, 2], [0, 0, 22, 0]])
+    X_dummy = np.array([[1, 1, 1], [2, 2, 2], [0, 0, 0]])  # experience, education, branch
     y_dummy = [300000, 600000, 200000]
     model.fit(X_dummy, y_dummy)
 
@@ -67,7 +67,7 @@ if st.session_state.submitted:
     try:
         branch_encoded = branch_map[st.session_state.branch]
         education_encoded = education_map[st.session_state.education]
-        input_features = np.array([[st.session_state.experience, education_encoded, st.session_state.age, branch_encoded]])
+        input_features = np.array([[st.session_state.experience, education_encoded, branch_encoded]])
         predicted_salary = model.predict(input_features)[0]
 
         # ---------- Flash Card Display ----------
